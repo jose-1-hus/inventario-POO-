@@ -2,8 +2,6 @@ import re
 import secrets
 from datetime import datetime
 import hashlib
-
-
 class PasswordHasher:
     """Servicio de hashing de contraseñas"""
     
@@ -16,8 +14,6 @@ class PasswordHasher:
     def verify_password(password: str, hashed: str) -> bool:
         """Verifica si la contraseña coincide con el hash"""
         return PasswordHasher.hash_password(password) == hashed
-
-
 class TokenGenerator:
     """Servicio de generación de tokens únicos"""
     
@@ -25,8 +21,6 @@ class TokenGenerator:
     def generate_token() -> str:
         """Genera token criptográfico seguro"""
         return secrets.token_hex(16)
-
-
 class Validator:
     """Servicio de validaciones"""
     
@@ -57,8 +51,6 @@ class Validator:
         if not any(c.isdigit() for c in password):
             return "Incluir número"
         return ""
-
-
 class Usuario:
     """Modelo de Usuario con encapsulación"""
     
@@ -101,8 +93,6 @@ class Usuario:
     def access_token(self, token: str):
         """Actualiza token de acceso"""
         self.__access_token = token
-
-
 class RepositorioUsuarios:
     """Gestiona usuarios en memoria con encapsulación"""
     
@@ -145,8 +135,6 @@ class RepositorioUsuarios:
     def contar_usuarios(self) -> int:
         """Retorna cantidad de usuarios"""
         return len(self.__usuarios)
-
-
 class ServicioAutenticacion:
     """Lógica de autenticación con encapsulación"""
     
@@ -208,8 +196,6 @@ class ServicioAutenticacion:
     def obtener_repositorio(self) -> RepositorioUsuarios:
         """Obtiene acceso al repositorio (solo lectura de métodos públicos)"""
         return self.__repositorio
-
-
 class InterfazTerminal:
     """Interfaz en terminal con encapsulación"""
     
@@ -332,14 +318,12 @@ class InterfazTerminal:
                 print("\n❌ Opción inválida")
                 input("\nPresiona Enter...")
 
-
 def main():
     """Función principal"""
     repositorio = RepositorioUsuarios()
     servicio_auth = ServicioAutenticacion(repositorio)
     interfaz = InterfazTerminal(servicio_auth)
     interfaz.ejecutar()
-
 
 if __name__ == "__main__":
     main()
